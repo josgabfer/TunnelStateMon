@@ -8,7 +8,7 @@ This is achieved by sending a GET request to https://docs.umbrella.com/umbrella-
 Use git to clone the repository files to your machine:
 
 ```bash
-git clone https://github.com/josgabfer/ADConnMon.git
+git clone https://github.com/josgabfer/TunnelStateMonitor.git
 
 # Requirements:
 Package            Version
