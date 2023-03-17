@@ -62,8 +62,8 @@ getToken.py - this python file will take care of generating a new authentication
 
 Run the script manually:
 ```python
-Windows: python ADConnectorMonitor.py
-Mac: python3 ADConnectorMonitor.py
+Windows: python TunnelStateMonitor.py
+Mac: python3 https://docs.umbrella.com/umbrella-user-guide/docs/tunnels.py
 ```
 
 Run the script automatically:
