@@ -34,7 +34,7 @@ def send_email(body):
     </head>
     <body>
         <h1>Detected Tunnels Down</h1>
-        <p>The following tunnel(s) are currently down or not established: \n""" + "\r\n".join(body) + """. \nPlease check your Umbrella dashboard.</p>
+        <p>The following tunnel(s) are currently DOWN or UNESTABLISHED: \n""" + "\r\n".join(body) + """. \nPlease check your Umbrella dashboard.</p>
 
         <style type="text/css">
             body{
@@ -96,14 +96,20 @@ def alert():
     """This function will search for all the AD connectors in error state to call the send email function"""
     tunnels = get_request()
     body = []
+    count = 0
     for tunnel in tunnels:
         if(tunnel['meta']):
-            message = 'The tunnel: ' +  tunnel['name'] +  ' is ' + tunnel['meta']['state']['status']
-            body.append(message)
+            if (tunnel['meta']['state']['status'] == 'DOWN'):
+                message = tunnel['name'] +  ': ' + tunnel['meta']['state']['status'] + '\n'
+                body.append(message)
+                count+=1
         else:
-            message = 'The tunnel: ' + tunnel['name'] + ' ' + 'Is not yet Established'
+            message = tunnel['name'] + ': ' + 'Unestablished' + '\n'
             body.append(message)
-    send_email(body)
+    if(count !=  0):
+        send_email(body)
+    else:
+        print('Tunnels are Up and running')
 
 if __name__ == '__main__':
     alert()

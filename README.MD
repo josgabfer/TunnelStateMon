@@ -1,7 +1,7 @@
 # Tunnel State Monitor
 
 The tunnelstatemon script sends email alerts when it detects a tunnel in error state.  
-This is achieved by sending a GET request to https://docs.umbrella.com/umbrella-user-guide/docs/tunnels to get all the AD integration components (VAs, DCs and AD connectors) from the dashboard. After this, the script checks the status of all AD connectors in the dashboard and if it finds an AD connector in error state, it will send an email alert to the specified recipients.
+This is achieved by sending a GET request to https://docs.umbrella.com/umbrella-user-guide/docs/tunnels to get all the tunnels from the dashboard. After this, the script checks the status of all Tunnelss in the dashboard and if it finds an error state, it will send an email alert to the specified recipients.
 
 ## Installation
 
@@ -32,16 +32,16 @@ urllib3            1.26.12
 
 ## Files
 
-ADConnectorMonitor.py - this python file perform 3 tasks:  
+TunnelStateMonitor.py - this python file perform 3 tasks:  
     1) Send a GET request to https://api.umbrella.com/deployments/v2/tunnels to get a list of all the tunnels in the Umbrella dashboard.  
     2) Check the status of all tunnels.  
     3) Send email alerts if it detects a tunnel in error state.  
 
 getToken.py - this python file will take care of generating a new authentication token if needed.
 
-.env - this file is not included in the repository files since it needs to be created locally on the machine. The .env file is where we store the parameters that the ADConnectorMonitor.py file needs to work. Please follow the next instructions:  
+.env - this file is not included in the repository files since it needs to be created locally on the machine. The .env file is where we store the parameters that the TunnelStateMonitor.py file needs to work. Please follow the next instructions:  
 ```
-1) Create the .env file in the same location where the ADConnectorMonitor.py is stored and copy & paste the following text and fill:  
+1) Create the .env file in the same location where the TunnelStateMonitor.py is stored and copy & paste the following text and fill:  
     EMAIL_ADDRESS = ''  
     PASS = ''  
     RECIPIENTS = ''  
