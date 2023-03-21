@@ -34,7 +34,7 @@ def send_email(body):
     </head>
     <body>
         <h1>Detected Tunnels Down</h1>
-        <p>The following tunnel(s) are currently DOWN or UNESTABLISHED: \n""" + "\r\n".join(body) + """. \nPlease check your Umbrella dashboard.</p>
+        <p>The following tunnel(s) are currently DOWN or UNESTABLISHED: <br/>""" + "\r\n".join(body) + """ <br/> Please check your Umbrella dashboard.</p>
 
         <style type="text/css">
             body{
@@ -100,11 +100,11 @@ def alert():
     for tunnel in tunnels:
         if(tunnel['meta']):
             if (tunnel['meta']['state']['status'] == 'DOWN'):
-                message = tunnel['name'] +  ': ' + tunnel['meta']['state']['status'] + '\n'
+                message = tunnel['name'] +  ': '  + tunnel['meta']['state']['status'] +'<br/>'
                 body.append(message)
                 count+=1
         else:
-            message = tunnel['name'] + ': ' + 'Unestablished' + '\n'
+            message = tunnel['name'] + ': ' + 'Unestablished' + '<br/>'
             body.append(message)
     if(count !=  0):
         send_email(body)
